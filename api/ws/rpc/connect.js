@@ -45,19 +45,22 @@ const connectSteps = {
 	addConnectionOptions: peer => {
 		const systemHeaders = System.getHeaders();
 		const queryParams = {};
-		if (systemHeaders.version) {
+		if (systemHeaders.version !== null && systemHeaders.version !== undefined) {
 			queryParams.version = systemHeaders.version;
 		}
-		if (systemHeaders.wsPort) {
+		if (systemHeaders.wsPort !== null && systemHeaders.wsPort !== undefined) {
 			queryParams.wsPort = systemHeaders.wsPort;
 		}
-		if (systemHeaders.httpPort) {
+		if (
+			systemHeaders.httpPort !== null &&
+			systemHeaders.httpPort !== undefined
+		) {
 			queryParams.httpPort = systemHeaders.httpPort;
 		}
-		if (systemHeaders.nethash) {
+		if (systemHeaders.nethash !== null && systemHeaders.nethash !== undefined) {
 			queryParams.nethash = systemHeaders.nethash;
 		}
-		if (systemHeaders.nonce) {
+		if (systemHeaders.nonce !== null && systemHeaders.nonce !== undefined) {
 			queryParams.nonce = systemHeaders.nonce;
 		}
 		peer.connectionOptions = {

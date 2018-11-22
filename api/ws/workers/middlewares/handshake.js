@@ -157,7 +157,8 @@ var extractHeaders = function(request) {
 	headers.ip = request.remoteAddress.split(':').pop();
 	headers.httpPort = +headers.httpPort;
 	headers.wsPort = +headers.wsPort;
-	if (headers.height) {
+
+	if (headers.height !== null && headers.height !== undefined) {
 		headers.height = +headers.height;
 	}
 	return headers;
