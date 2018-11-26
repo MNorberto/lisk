@@ -378,8 +378,7 @@ describe('blocks/process', () => {
 								});
 								return __private.validateBlockSlot.callsArgWith(
 									2,
-									'validateBlockSlot-ERR',
-									null
+									'validateBlockSlot-ERR'
 								);
 							});
 
@@ -407,7 +406,7 @@ describe('blocks/process', () => {
 											timestamp: 1,
 											id: 2,
 										});
-										__private.validateBlockSlot.callsArgWith(2, null, true);
+										__private.validateBlockSlot.callsArgWith(1, null, true);
 										return modules.blocks.verify.verifyReceipt.returns({
 											verified: false,
 											errors: ['verifyReceipt-ERR', 'ERR2'],
@@ -449,7 +448,7 @@ describe('blocks/process', () => {
 													timestamp: 1,
 													id: 2,
 												});
-												__private.validateBlockSlot.callsArgWith(2, null, true);
+												__private.validateBlockSlot.callsArgWith(1, null, true);
 												modules.blocks.verify.verifyReceipt.returns({
 													verified: true,
 												});
@@ -485,7 +484,7 @@ describe('blocks/process', () => {
 															id: 2,
 														});
 														__private.validateBlockSlot.callsArgWith(
-															2,
+															1,
 															null,
 															true
 														);
@@ -528,7 +527,7 @@ describe('blocks/process', () => {
 															id: 2,
 														});
 														__private.validateBlockSlot.callsArgWith(
-															2,
+															1,
 															null,
 															true
 														);
@@ -704,7 +703,7 @@ describe('blocks/process', () => {
 
 						describe('when succeeds', () => {
 							beforeEach(() => {
-								return __private.validateBlockSlot.callsArgWith(2, null, true);
+								return __private.validateBlockSlot.callsArgWith(1, null, true);
 							});
 
 							describe('modules.blocks.verify.verifyReceipt', () => {
@@ -2064,16 +2063,12 @@ describe('blocks/process', () => {
 						});
 
 						it('should call a callback with error', done => {
-							__private.validateBlockSlot(
-								{ height: 10 },
-								{ height: 200 },
-								err => {
-									expect(err).to.equal('round-ERR');
-									expect(modules.delegates.validateBlockSlot.calledOnce).to.be
-										.true;
-									done();
-								}
-							);
+							__private.validateBlockSlot({ height: 10 }, err => {
+								expect(err).to.equal('round-ERR');
+								expect(modules.delegates.validateBlockSlot.calledOnce).to.be
+									.true;
+								done();
+							});
 						});
 					});
 
