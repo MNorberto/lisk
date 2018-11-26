@@ -214,7 +214,7 @@ Vote.prototype.verify = function(transaction, sender, cb, tx) {
 		],
 		waterErr => {
 			if (waterErr) {
-				if (exceptions.votes.includes(transaction.id)) {
+				if (exceptions.votes.indexOf(transaction.id) > -1) {
 					library.logger.warn(
 						`vote.verify: Invalid transaction identified as exception "${
 							transaction.id

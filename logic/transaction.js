@@ -623,9 +623,9 @@ class Transaction {
 						// Check against exceptions
 						if (
 							exceptions.duplicatedSignatures[transaction.id] &&
-							exceptions.duplicatedSignatures[transaction.id].includes(
+							exceptions.duplicatedSignatures[transaction.id].indexOf(
 								transaction.signatures[s]
-							)
+							) > -1
 						) {
 							this.scope.logger.warn('Transaction accepted due to exceptions', {
 								err,
@@ -846,7 +846,7 @@ class Transaction {
 	 * @todo Add description for the params
 	 */
 	applyConfirmed(transaction, block, sender, cb, tx) {
-		if (exceptions.inertTransactions.includes(transaction.id)) {
+		if (exceptions.inertTransactions.indexOf(transaction.id) > -1) {
 			this.scope.logger.debug('Inert transaction encountered');
 			this.scope.logger.debug(JSON.stringify(transaction));
 			return setImmediate(cb);
@@ -929,7 +929,7 @@ class Transaction {
 	 * @todo Add description for the params
 	 */
 	undoConfirmed(transaction, block, sender, cb, tx) {
-		if (exceptions.inertTransactions.includes(transaction.id)) {
+		if (exceptions.inertTransactions.indexOf(transaction.id) > -1) {
 			this.scope.logger.debug('Inert transaction encountered');
 			this.scope.logger.debug(JSON.stringify(transaction));
 			return setImmediate(cb);
@@ -1003,7 +1003,7 @@ class Transaction {
 			cb = requester;
 		}
 
-		if (exceptions.inertTransactions.includes(transaction.id)) {
+		if (exceptions.inertTransactions.indexOf(transaction.id) > -1) {
 			this.scope.logger.debug('Inert transaction encountered');
 			this.scope.logger.debug(JSON.stringify(transaction));
 			return setImmediate(cb);
@@ -1066,7 +1066,7 @@ class Transaction {
 	 * @todo Add description for the params
 	 */
 	undoUnconfirmed(transaction, sender, cb, tx) {
-		if (exceptions.inertTransactions.includes(transaction.id)) {
+		if (exceptions.inertTransactions.indexOf(transaction.id) > -1) {
 			this.scope.logger.debug('Inert transaction encountered');
 			this.scope.logger.debug(JSON.stringify(transaction));
 			return setImmediate(cb);
