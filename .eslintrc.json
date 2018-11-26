@@ -17,7 +17,7 @@
 				"functions": "never"
 			}
 		],
-		"consistent-return": "off",
+		"consistent-return": "error",
 		"func-names": "off",
 		"global-require": "off",
 		"guard-for-in": "off",
