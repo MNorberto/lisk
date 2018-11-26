@@ -3,6 +3,7 @@
 	"plugins": ["mocha", "chai-expect"],
 	"rules": {
 		"array-callback-return": "error",
+		"callback-return": "error",
 		"camelcase": "off",
 		"chai-expect/missing-assertion": "error",
 		"chai-expect/no-inner-compare": "error",
@@ -22,7 +23,6 @@
 		"guard-for-in": "off",
 		"generator-star-spacing": ["error", { "before": false, "after": false }],
 		"max-len": "off",
-		"new-cap": "off",
 		"no-bitwise": "off",
 		"no-nested-ternary": "off",
 		"no-new": "off",

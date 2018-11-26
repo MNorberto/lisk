@@ -162,8 +162,8 @@ function __init(initScope, done) {
 					},
 
 					schema(cb) {
-						var z_schema = require('../../helpers/z_schema.js');
-						cb(null, new z_schema());
+						var Z_schema = require('../../helpers/z_schema.js');
+						cb(null, new Z_schema());
 					},
 					network(cb) {
 						// Init with empty function
@@ -520,7 +520,7 @@ function cleanup(done) {
 			if (typeof module.cleanup === 'function') {
 				module.cleanup(cb);
 			} else {
-				cb();
+				return cb();
 			}
 		},
 		err => {

@@ -20,7 +20,7 @@ var async = require('async');
 var Sequence = require('../../helpers/sequence.js');
 var database = require('../../db');
 var Logger = require('../../logger.js');
-var z_schema = require('../../helpers/z_schema.js');
+var Z_schema = require('../../helpers/z_schema.js');
 var cacheHelper = require('../../helpers/cache.js');
 var Cache = require('../../modules/cache.js');
 var ed = require('../../helpers/ed');
@@ -45,7 +45,7 @@ var modulesLoader = new function() {
 				sockets: express(),
 			},
 		},
-		schema: new z_schema(),
+		schema: new Z_schema(),
 		ed,
 		bus: {
 			argsMessages: [],
@@ -93,7 +93,7 @@ var modulesLoader = new function() {
 							new Account(scope.db, scope.schema, scope.logger, cb);
 						},
 					},
-					(err, result) => {
+					(__err, result) => {
 						new Logic(
 							scope.db,
 							scope.ed,
@@ -297,10 +297,9 @@ var modulesLoader = new function() {
 			this.logger,
 			(err, __cache) => {
 				if (err) {
-					cb(err, __cache);
-				} else {
-					this.initModule(Cache, _.merge(this.scope, { cache: __cache }), cb);
+					return cb(err, __cache);
 				}
+				this.initModule(Cache, _.merge(this.scope, { cache: __cache }), cb);
 			}
 		);
 	};
